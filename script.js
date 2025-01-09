@@ -66,9 +66,16 @@ function playRound(hC, cC){
     
 }
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
+function playGame(){
+    let rounds = 0;
+    while(rounds<5){
+        let hC = getHumanChoice();
+        let cC = getComputerChoice();
+        console.log(playRound(hC,cC));
+        rounds += 1;
+        console.log(`Computer Score = ${computerScore}`);
+        console.log(`Human Score = ${humanScore}`);
+    }
+}
 
-console.log(playRound(humanChoice,computerChoice));
-console.log(`Computer Score = ${computerScore}`);
-console.log(`Human Score = ${humanScore}`);
+playGame();
