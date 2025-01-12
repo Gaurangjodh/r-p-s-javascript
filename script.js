@@ -1,5 +1,12 @@
 let humanScore = 0;
 let computerScore = 0;
+const choice = document.querySelector(".choice");
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const hDisplay = document.querySelector(".humanScore");
+const compDisplay = document.querySelector(".compScore");
+const winDisplay = document.querySelector(".winner")
 
 function getComputerChoice(){
     let choice = Math.random()*100;
@@ -12,15 +19,6 @@ function getComputerChoice(){
     else{
         return 'scissors';
     }
-}
-
-function getHumanChoice(){
-    let choice = prompt('Enter your choice (Rock/Paper/Scissors)').toLowerCase();
-    if(choice!='rock' && choice!='scissors' && choice!='paper'){
-        alert('Invalid input given.');
-        return -1;
-    }
-    return choice;
 }
 
 function playRound(hC, cC){
@@ -65,17 +63,61 @@ function playRound(hC, cC){
     }
     
 }
+function getScores() {
+    hDisplay.textContent = `Your score = ${humanScore}`;
+    compDisplay.textContent = `Computer score = ${computerScore}`;
+}
 
-function playGame(){
-    let rounds = 0;
-    while(rounds<5){
-        let hC = getHumanChoice();
-        let cC = getComputerChoice();
-        console.log(playRound(hC,cC));
-        rounds += 1;
-        console.log(`Computer Score = ${computerScore}`);
-        console.log(`Human Score = ${humanScore}`);
+function checkWinner() {
+    if(humanScore==5){
+        winDisplay.textContent = `You are the winner! Congratulations!!`;
+        reset();
+    }
+    else if(computerScore==5){
+        winDisplay.textContent = `Computer won this time. Better luck next time!`
+        reset();
     }
 }
 
-playGame();
+const tryBtn = document.createElement("button");
+tryBtn.textContent = "Try Again";
+
+function reset() {
+    winDisplay.textContent = '';
+    winDisplay.appendChild(tryBtn);
+    humanScore = 0;
+    computerScore = 0;
+}
+
+tryBtn.onclick = function() {
+    winDisplay.textContent = '';
+    getScores();
+    choice.textContent = '';
+}
+// function playGame(){
+//     let rounds = 0;
+//     while(rounds<5){
+//         let hC = getHumanChoice();
+//         let cC = getComputerChoice();
+//         console.log(playRound(hC,cC));
+//         rounds += 1;
+//         console.log(`Computer Score = ${computerScore}`);
+//         console.log(`Human Score = ${humanScore}`);
+//     }
+// }
+
+rock.addEventListener("click",() => {
+    choice.textContent = playRound('rock',getComputerChoice());
+    getScores();
+    checkWinner();
+});
+paper.addEventListener("click",() => {
+    choice.textContent = playRound('paper',getComputerChoice());
+    getScores();
+    checkWinner();
+});
+scissors.addEventListener("click",() => {
+    choice.textContent = playRound('scissors',getComputerChoice());
+    getScores();
+    checkWinner();
+});
