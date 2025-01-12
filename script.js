@@ -6,7 +6,14 @@ const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const hDisplay = document.querySelector(".humanScore");
 const compDisplay = document.querySelector(".compScore");
-const winDisplay = document.querySelector(".winner")
+const winDisplay = document.querySelector(".winner");
+// winDisplay.className = "winner";
+const tryBtn = document.createElement("button");
+tryBtn.textContent = "Try Again";
+tryBtn.className = "tryButton";
+const textContainer = document.querySelector('.text-container');
+textContainer.appendChild(winDisplay);
+const btnContainer = document.querySelector(".btn-container");
 
 function getComputerChoice(){
     let choice = Math.random()*100;
@@ -70,29 +77,37 @@ function getScores() {
 
 function checkWinner() {
     if(humanScore==5){
-        winDisplay.textContent = `You are the winner! Congratulations!!`;
+        winDisplay.textContent = `You are the winner! Congratulations!!\n`;
+        winDisplay.setAttribute("style", "background-color: green");
         reset();
     }
     else if(computerScore==5){
-        winDisplay.textContent = `Computer won this time. Better luck next time!`
+        winDisplay.textContent = `Computer won this time. Better luck next time!\n`
+        winDisplay.setAttribute("style", "background-color: red");
         reset();
     }
 }
 
-const tryBtn = document.createElement("button");
-tryBtn.textContent = "Try Again";
+
 
 function reset() {
-    winDisplay.textContent = '';
-    winDisplay.appendChild(tryBtn);
+    // winDisplay.textContent = '';
+    textContainer.appendChild(tryBtn);
+    tryBtn.hidden=false;
     humanScore = 0;
     computerScore = 0;
+    hDisplay.textContent = ``;
+    compDisplay.textContent = ``;
+    choice.textContent = ``;
+    btnContainer.style.display = 'none';
 }
 
 tryBtn.onclick = function() {
+    tryBtn.hidden=true;
     winDisplay.textContent = '';
-    getScores();
+    btnContainer.hidden = false;
     choice.textContent = '';
+    btnContainer.style.display = 'block'; 
 }
 // function playGame(){
 //     let rounds = 0;

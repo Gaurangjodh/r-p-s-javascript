@@ -1,0 +1,49 @@
+html{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+body{
+    background-color: black;
+    color: white;
+    overflow-x: hidden;
+}
+h1{
+    text-align: center;
+}
+img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+button{
+    padding: 10px 20px;
+    border: 0;
+
+}
+.btn-container{
+
+    display: flex;
+    padding: 25px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.tryButton{
+    background-color: rgb(59, 184, 48);
+    color: black;
+    cursor: pointer;
+}
+
+.text-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.winner{
+    color: white;
+}
